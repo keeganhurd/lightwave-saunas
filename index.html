@@ -521,6 +521,15 @@
             margin: 0.5rem 0;
         }
 
+        /* Free Shipping Styles */
+        .model-free-shipping, .product-free-shipping {
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-top: -0.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
         .model-features {
             list-style: none;
             margin: 1rem 0;
@@ -786,59 +795,93 @@
             .mobile-menu-btn { display: none; }
         }
 
-        /* --- Modal Styles --- */
+        /* --- Modal Styles (Updated) --- */
+        .modal-overlay.hidden,
+        .modal.hidden { display: none !important; }
+
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            inset: 0;
             z-index: 2000;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2050; /* Above overlay */
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            pointer-events: none; /* Allow click through to overlay if not hitting content */
         }
 
-        .modal-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .modal.hidden { pointer-events: none; }
+        .modal:not(.hidden) { pointer-events: auto; }
 
         .modal-content {
-            background: var(--bg-surface);
+            max-width: 480px;
             width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
             position: relative;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-
-        .modal-overlay.open .modal-content {
-            transform: translateY(0);
+            pointer-events: auto;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-close {
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-secondary);
             cursor: pointer;
-            z-index: 10;
+            line-height: 1;
+        }
+        .modal-close:hover { color: var(--accent-primary); }
+
+        .modal-form label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
 
-        .modal-close:hover {
-            color: var(--accent-primary);
+        .modal-form input,
+        .modal-form textarea {
+            width: 100%;
+            margin-top: 0.25rem;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .modal-form .btn {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .modal-status {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            opacity: 0.85;
+            text-align: center;
         }
 
         /* --- Product Page Specifics --- */
@@ -891,8 +934,8 @@
             <div class="logo-container">
                 <!-- Swapping Logo Implementation -->
                 <a href="./" aria-label="LightWave Saunas Home">
-                    <img src="Phos Kyma Logo Dark.png" alt="LightWave Saunas" class="logo-dark" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
-                    <img src="Phos Kyma Logo Light.png" alt="LightWave Saunas" class="logo-light hidden" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
+                    <img src="/images/phos-kyma-logo-dark.jpg" alt="LightWave Saunas" class="logo-dark" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
+                    <img src="/images/phos-kyma-logo-light.jpg" alt="LightWave Saunas" class="logo-light hidden" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
                     <span id="logo-text" class="logo-text-fallback" style="display:none;">LightWave Saunas</span>
                 </a>
             </div>
@@ -1233,9 +1276,9 @@
                 </div>
                 <div class="footer-links">
                     <h4>Links</h4>
-                    <a href="#" data-modal="contact">Contact Us</a>
-                    <a href="#" data-modal="privacy">Privacy Policy</a>
-                    <a href="#" data-modal="terms">Terms of Service</a>
+                    <a href="#" data-modal-target="contact">Contact Us</a>
+                    <a href="#" data-modal-target="privacy">Privacy Policy</a>
+                    <a href="#" data-modal-target="terms">Terms of Service</a>
                 </div>
             </div>
             
@@ -1249,12 +1292,50 @@
         </div>
     </footer>
 
-    <!-- Modal Container -->
-    <div id="modal-overlay" class="modal-overlay">
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-backdrop"></div>
+    </div>
+  
+    <div id="modal-contact" class="modal hidden">
         <div class="modal-content">
-            <button id="modal-close" class="modal-close">×</button>
-            <h3 id="modal-title">Modal Title</h3>
-            <div id="modal-body"></div>
+            <button class="modal-close" data-modal-close>&times;</button>
+            <h2>Contact Us</h2>
+            <p>Have questions about LightWave Saunas or your order? Send us a message below and we’ll respond as soon as possible.</p>
+            <form id="contact-form" class="modal-form">
+                <label>
+                    Name
+                    <input type="text" name="name" required>
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" required>
+                </label>
+                <label>
+                    Message
+                    <textarea name="message" rows="4" required></textarea>
+                </label>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <p id="contact-form-status" class="modal-status"></p>
+            </form>
+        </div>
+    </div>
+  
+    <div id="modal-privacy" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <h2>Privacy Policy</h2>
+            <p>This site uses basic analytics and advertising pixels to improve performance and measure conversions. We do not sell your personal information.</p>
+            <p>Any contact information you submit (such as your email) is used only to send you information related to LightWave Saunas, wellness content, and your orders. You can request removal at any time.</p>
+        </div>
+    </div>
+  
+    <div id="modal-terms" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <h2>Terms of Service</h2>
+            <p>By using this site and purchasing products, you agree to use them as directed and to consult your healthcare provider about any health conditions or concerns before use.</p>
+            <p>All sales are subject to the stated warranty and refund policies. This site does not provide medical advice and is for informational purposes only.</p>
         </div>
     </div>
 
@@ -1599,6 +1680,7 @@
                         <div style="margin-bottom:1.5rem;">
                             <span class="prod-price">${product.price}</span>
                             ${product.compareAtPrice ? `<span class="prod-compare">${product.compareAtPrice}</span>` : ''}
+                            <p class="product-free-shipping">Free shipping included</p>
                         </div>
                         
                         <p style="font-size:1.2rem; margin-bottom:1.5rem;">${product.tagline}</p>
@@ -1665,6 +1747,7 @@
                         <img src="${p.images[0]}" alt="${p.name}">
                     </div>
                     <div class="price">${p.price}</div>
+                    <p class="model-free-shipping">Free shipping included</p>
                     <ul class="model-features">
                         ${p.heroBullets.map(b => `<li>${b}</li>`).join('')}
                     </ul>
@@ -1852,6 +1935,10 @@
                 reasonText = `Because you need professional durability for <strong>frequent use</strong> or clinical settings, the Black Pro is built to handle your demands.`;
             }
 
+            // Find price from PRODUCTS array for result card
+            const product = PRODUCTS.find(p => p.id === modelId);
+            const price = product ? product.price : '';
+
             quizContainer.innerHTML = `
                 <div class="quiz-progress">
                     <div class="quiz-progress-bar" style="width: 100%"></div>
@@ -1862,6 +1949,8 @@
                     
                     <div class="result-card">
                         <h3>Recommended: ${recommendedModel}</h3>
+                        ${price ? `<div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 0.25rem;">${price}</div>` : ''}
+                        <p class="product-free-shipping" style="margin-top:0;">Free shipping included</p>
                         <p>${reasonText}</p>
                         <div style="display:flex; flex-direction:column; gap:0.5rem;">
                             <a href="?product=${recommendedSlug}" class="btn btn-primary" onclick="handleProductNav(event, '${recommendedSlug}')">View Recommended Sauna</a>
@@ -1915,9 +2004,8 @@
         // 8. Smooth Scroll & Navigation Fix (Intercepts clicks)
         document.addEventListener('click', function(e) {
             // A. Handle Anchor Links (ONLY if we are on landing view)
-            // If on product view, let logic handle "back" links or force refresh if needed, but here we cover general nav
             const anchor = e.target.closest('a[href^="#"]');
-            if (anchor) {
+            if (anchor && !anchor.hasAttribute('data-modal-target')) {
                 e.preventDefault();
                 const targetId = anchor.getAttribute('href').substring(1);
                 
@@ -1947,62 +2035,100 @@
                 return;
             }
 
-            // B. Handle Modals
-            const modalTrigger = e.target.closest('[data-modal]');
+            // B. Handle Modals via data-modal-target
+            const modalTrigger = e.target.closest('[data-modal-target]');
             if (modalTrigger) {
                 e.preventDefault();
-                const modalType = modalTrigger.getAttribute('data-modal');
+                const modalType = modalTrigger.getAttribute('data-modal-target');
                 openModal(modalType);
             }
         });
 
-        // 9. Modal Logic
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modalTitle = document.getElementById('modal-title');
-        const modalBody = document.getElementById('modal-body');
-        const modalCloseBtn = document.getElementById('modal-close');
-
-        const modalContentData = {
-            'contact': {
-                title: 'Contact Us',
-                body: '<p>Have questions? Reach out to our support team.</p><p>Email: <strong>support@lightwavesaunas.com</strong></p><p>Phone: 1-800-555-0199</p><p>Hours: Mon-Fri, 9am - 5pm EST</p>'
-            },
-            'privacy': {
-                title: 'Privacy Policy',
-                body: '<p>At LightWave Saunas, we value your privacy. This policy outlines how we collect, use, and protect your personal information.</p><h4>Data Collection</h4><p>We collect information you provide directly to us, such as when you create an account, make a purchase, or sign up for our newsletter.</p><h4>Data Usage</h4><p>We use your information to process transactions, provide customer support, and improve our services.</p>'
-            },
-            'terms': {
-                title: 'Terms of Service',
-                body: '<p>By accessing or using LightWave Saunas services, you agree to be bound by these Terms.</p><h4>Usage</h4><p>Our products are for personal wellness use only. Consult a doctor before use.</p><h4>Returns</h4><p>We offer a 30-day money-back guarantee on all saunas.</p>'
-            }
-        };
-
-        function openModal(type) {
-            const data = modalContentData[type];
-            if (data) {
-                modalTitle.textContent = data.title;
-                modalBody.innerHTML = data.body;
-                modalOverlay.classList.add('open');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            }
+        // 9. New Modal Logic
+        function openModal(name) {
+            const overlay = document.getElementById('modal-overlay');
+            const modal = document.getElementById(`modal-${name}`);
+            if (!overlay || !modal) return;
+            overlay.classList.remove('hidden');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            modalOverlay.classList.remove('open');
+        function closeAllModals() {
+            const overlay = document.getElementById('modal-overlay');
+            if (overlay) overlay.classList.add('hidden');
+            document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden'));
             document.body.style.overflow = '';
         }
 
-        modalCloseBtn.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal();
+        // Handle close buttons
+        document.addEventListener('click', function (event) {
+            if (event.target.matches('[data-modal-close]')) {
+                event.preventDefault();
+                closeAllModals();
+            }
         });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
+
+        // Close on overlay click
+        const overlayEl = document.getElementById('modal-overlay');
+        if (overlayEl) {
+            overlayEl.addEventListener('click', function () {
+                closeAllModals();
+            });
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeAllModals();
+            }
         });
+
+        // 10. Contact Form Logic
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                const form = event.target;
+                const statusEl = document.getElementById('contact-form-status');
+                const name = form.name.value.trim();
+                const email = form.email.value.trim();
+                const message = form.message.value.trim();
+
+                if (!name || !email || !message || !email.includes('@')) {
+                    if (statusEl) statusEl.textContent = 'Please fill out all fields with a valid email.';
+                    return;
+                }
+
+                if (typeof GHL_WEBHOOK_URL === 'string' && GHL_WEBHOOK_URL && GHL_WEBHOOK_URL !== 'PASTE_GHL_WEBHOOK_HERE') {
+                    try {
+                        await fetch(GHL_WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                source: 'contact-form',
+                                name,
+                                email,
+                                message
+                            })
+                        });
+                        if (statusEl) statusEl.textContent = 'Message sent! We’ll get back to you soon.';
+                        form.reset();
+                    } catch (e) {
+                        console.warn('Contact form webhook error:', e);
+                        if (statusEl) statusEl.textContent = 'Message received. There was a problem sending to the server, but you can also email us directly.';
+                    }
+                } else {
+                    console.log('Contact form submission:', { name, email, message });
+                    if (statusEl) statusEl.textContent = 'Message sent! We’ll get back to you soon.';
+                    form.reset();
+                }
+            });
+        }
 
         // Run Init
         init();
 
     </script>
 </body>
-</html>--- END OF FILE index.html ---
+</html>
