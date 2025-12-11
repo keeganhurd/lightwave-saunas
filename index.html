@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightWave Saunas | Portable Far Infrared Therapy</title>
+    <meta name="description" content="Experience medical-grade far infrared therapy at home. Deep detox, pain relief, and recovery in just 15 minutes a day with LightWave Saunas.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS Variables & Theme Setup --- */
+        :root {
+            /* Common Colors */
+            --color-kyma-gold: #F0A500;
+            --color-phos-violet: #6A4C93;
+            --color-circuit-navy: #1B1E2B;
+            --color-neon-violet: #9D65FF;
+            --color-luminous-gold: #FFB74D;
+            
+            /* Gradients */
+            --gradient-heat: linear-gradient(135deg, #F0A500 0%, #FF6B6B 100%);
+            --gradient-wave: linear-gradient(135deg, #6A4C93 0%, #4D96FF 100%);
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Transitions */
+            --transition-speed: 0.3s;
+        }
+
+        /* Dark Mode (Default) */
+        [data-theme="dark"] {
+            --bg-body: #0B0C12;
+            --bg-surface: #151722;
+            --bg-surface-hover: #1E2130;
+            --text-primary: #EAEAEA;
+            --text-secondary: #A0A0A5;
+            --border-color: #2C2F3F;
+            --accent-primary: #FFB74D; /* Luminous Gold */
+            --accent-secondary: #9D65FF;
+            --btn-primary-bg: #FFB74D;
+            --btn-primary-text: #0B0C12;
+            --logo-filter: none;
+            --circuit-opacity: 0.05;
+        }
+
+        /* Light Mode */
+        [data-theme="light"] {
+            --bg-body: #FFFFFF;
+            --bg-surface: #F7F7F9;
+            --bg-surface-hover: #ECECF0;
+            --text-primary: #1B1E2B;
+            --text-secondary: #5A5A60;
+            --border-color: #E0E0E0;
+            --accent-primary: #6A4C93; /* Phos Violet */
+            --accent-secondary: #E69500;
+            --btn-primary-bg: #6A4C93;
+            --btn-primary-text: #FFFFFF;
+            --logo-filter: none;
+            --circuit-opacity: 0;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            font-size: 1.125rem; /* 18px min requirement */
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        @media (min-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.5rem; }
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Utilities --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        .section {
+            padding: var(--spacing-xl) 0;
+            position: relative;
+        }
+
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-sm { gap: var(--spacing-sm); }
+        .gap-md { gap: var(--spacing-md); }
+
+        .hidden { display: none !important; }
+
+        /* --- Components --- */
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-color: var(--bg-surface-hover);
+        }
+
+        /* Section Accents (Circuit Lines) */
+        [data-theme="dark"] .section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 L90 10 M10 50 L90 50' stroke='%232C2F3F' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            opacity: var(--circuit-opacity);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Header --- */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(var(--bg-body), 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .logo-text-fallback {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            margin-left: 1rem;
+            padding: 0.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .nav-links { display: flex; align-items: center; }
+        }
+
+        /* --- Hero --- */
+        .hero {
+            padding-top: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .hero-content .subhead {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .trust-item svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent-primary);
+        }
+
+        .hero-visual {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .placeholder-text {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        @media (min-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* --- Benefits --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+        
+        .benefits-intro {
+            max-width: 800px;
+            margin: 0 auto var(--spacing-md) auto;
+        }
+
+        /* --- Audience --- */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .check-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .check-list li::before {
+            content: "✓";
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        /* --- Comparison --- */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .comp-list {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .comp-list li {
+            margin-bottom: 1rem;
+        }
+        
+        .comp-list strong {
+            display: block;
+            color: var(--text-primary);
+        }
+
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .comp-table th, .comp-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comp-table th {
+            background: rgba(0,0,0,0.2);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .comp-table th:first-child {
+            color: var(--accent-primary);
+        }
+
+        @media (min-width: 768px) {
+            .comparison-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* --- How It Works --- */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: var(--bg-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-number {
+            background-color: var(--accent-primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .steps-container { flex-direction: row; }
+            .step-item { flex: 1; flex-direction: column; }
+        }
+
+        /* --- Models (Pricing) --- */
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .model-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .model-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #222;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--bg-surface),
+                var(--bg-surface) 10px,
+                var(--bg-surface-hover) 10px,
+                var(--bg-surface-hover) 20px
+            );
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .model-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin: 0.5rem 0;
+        }
+
+        .model-features {
+            list-style: none;
+            margin: 1rem 0;
+            flex-grow: 1;
+        }
+
+        .model-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .model-features li::before {
+            content: "•";
+            color: var(--accent-primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .secure-text {
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .stars {
+            color: var(--color-kyma-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .user-meta {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* --- Quiz --- */
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: var(--spacing-md);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .quiz-progress {
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: var(--accent-primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-question h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        [data-theme="light"] .quiz-option:hover {
+             background: rgba(0, 0, 0, 0.05);
+        }
+
+        .result-panel {
+            text-align: center;
+        }
+
+        .result-card {
+            background: var(--bg-surface-hover);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--accent-primary);
+        }
+
+        .email-capture {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .email-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .email-input-group input {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            min-width: 200px;
+        }
+
+        .quiz-back-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* --- FAQ --- */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem 0;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-answer p {
+            padding-bottom: 1.5rem;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--bg-surface);
+            padding: var(--spacing-lg) 0 var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-links a {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-box {
+            width: 32px; height: 32px;
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* --- Mobile Nav --- */
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (min-width: 992px) {
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-surface);
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-primary);
+        }
+
+        /* --- Product Page Specifics --- */
+        .product-container { padding-top: 2rem; padding-bottom: 4rem; }
+        .product-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        @media(min-width: 992px) { .product-grid { grid-template-columns: 1.2fr 1fr; } }
+
+        .gallery-main { 
+            aspect-ratio: 1; 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; margin-bottom: 1rem;
+            position: relative;
+        }
+        .gallery-thumbs { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .gallery-thumb { 
+            width: 80px; height: 80px; flex-shrink: 0; 
+            border: 1px solid var(--border-color); border-radius: 8px; 
+            cursor: pointer; opacity: 0.7; transition: 0.2s;
+            background: var(--bg-surface);
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .gallery-thumb:hover, .gallery-thumb.active { opacity: 1; border-color: var(--accent-primary); }
+
+        .prod-badge { 
+            display: inline-block; background: var(--accent-primary); color: #fff; 
+            padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem;
+        }
+        .prod-price { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .prod-compare { text-decoration: line-through; color: var(--text-secondary); font-size: 1.25rem; margin-left: 1rem; }
+        .prod-bullets li { margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+        .prod-bullets li::before { content: "•"; color: var(--accent-primary); font-weight: bold; }
+
+        .specs-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .specs-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
+        .specs-table td:first-child { font-weight: 600; width: 40%; color: var(--text-secondary); }
+
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; color: var(--text-secondary); font-weight: 500; cursor: pointer;}
+        .back-link:hover { color: var(--accent-primary); }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo-container">
+                <!-- Swapping Logo Implementation -->
+                <a href="./" aria-label="LightWave Saunas Home">
+                    <img src="Phos Kyma Logo Dark.png" alt="LightWave Saunas" class="logo-dark" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
+                    <img src="Phos Kyma Logo Light.png" alt="LightWave Saunas" class="logo-light hidden" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block';">
+                    <span id="logo-text" class="logo-text-fallback" style="display:none;">LightWave Saunas</span>
+                </a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#benefits">Benefits</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#models">Models</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#faq">FAQ</a>
+                <a href="#quiz" class="btn btn-primary" style="margin-left: 1.5rem; padding: 0.5rem 1rem;">Quiz</a>
+            </nav>
+
+            <div style="display: flex; align-items: center;">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                    <span class="icon-moon">🌙</span>
+                    <span class="icon-sun hidden">☀️</span>
+                </button>
+                <button class="mobile-menu-btn" style="margin-left: 0.5rem;">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- LANDING PAGE VIEW -->
+        <div id="landing-view">
+            <!-- Hero Section -->
+            <section id="hero" class="section hero">
+                <div class="container hero-grid">
+                    <div class="hero-content">
+                        <h1>Deep Penetrating Detox, Pain Relief & Recovery in just 5–15 Minutes a Day!</h1>
+                        <p class="subhead">Experience the profound benefits of medical-grade far infrared therapy from the comfort of your home. Support fat-loss efforts, melt away stress, soothe joints, and re-energize your body without the gym.</p>
+                        
+                        <div class="hero-btns">
+                            <a href="#quiz" class="btn btn-primary">Find My Sauna Match (1-Min)</a>
+                            <a href="#models" class="btn btn-secondary">Shop Saunas</a>
+                        </div>
+
+                        <div class="trust-badges">
+                            <div class="trust-item">
+                                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/></svg>
+                                Sleek Compact Design
+                            </div>
+                            <div class="trust-item">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                30-Day Money Back
+                            </div>
+                            <div class="trust-item">
+                                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                                1-Year Warranty
+                            </div>
+                            <div class="trust-item">
+                                <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                                Fast Shipping
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual">
+                        <!-- Placeholder for Hero Video -->
+                        <div class="placeholder-text text-center">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">▶</div>
+                            Hero Video / Lifestyle Image Placeholder
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits Section -->
+            <section id="benefits" class="section">
+                <div class="container">
+                    <div class="text-center benefits-intro">
+                        <h2>Why Choose Far Infrared</h2>
+                        <p>Traditional saunas warm the air around you, which can sometimes feel overwhelming. Far infrared saunas work differently—infrared light penetrates 2–3 inches into the body, warming you from the inside out. This deeply penetrating heat interacts with the water in your cells to help release toxins such as heavy metals, microplastics, and harmful gases. As a result, you experience a more intense, cleansing sweat at lower, more comfortable temperatures.</p>
+                    </div>
+
+                    <div class="benefits-grid">
+                        <div class="card">
+                            <h3>Detox & Circulation</h3>
+                            <p>Mobilize toxins stored in fat cells and improve blood flow. Feel lighter and energized after just one session.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Pain & Stiffness Relief</h3>
+                            <p>Deep heat soothes muscles and joints. Ideal for everyday stiffness and recovery.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Sleep & Recovery</h3>
+                            <p>Shift your body into parasympathetic (rest & digest) mode. Sleep deeper and wake up fully refreshed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Audience Section -->
+            <section id="audience" class="section">
+                <div class="container">
+                    <h2 class="text-center">Who Needs The Relax?</h2>
+                    <div class="audience-grid" style="margin-top: 2rem;">
+                        <div class="card">
+                            <h3>Stiff, Sore & Tired of It</h3>
+                            <ul class="check-list">
+                                <li>Chronic back or joint pain</li>
+                                <li>Feeling “slow” in the mornings</li>
+                                <li>Need gentle, passive relief</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Stressed-Out High Achievers</h3>
+                            <ul class="check-list">
+                                <li>High cortisol & anxiety</li>
+                                <li>Poor sleep quality</li>
+                                <li>Need a 15-min daily reset</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Athletes & Biohackers</h3>
+                            <ul class="check-list">
+                                <li>Faster muscle recovery</li>
+                                <li>Optimized circulation</li>
+                                <li>Heat shock protein benefits</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 2rem;">
+                        <a href="#models" class="btn btn-primary">See Which Model Fits You</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comparison Section -->
+            <section id="comparison" class="section">
+                <div class="container">
+                    <h2 class="text-center" style="margin-bottom: 2rem;">Why The Relax vs. Typical Infrared</h2>
+                    <div class="comparison-grid">
+                        <div>
+                            <ul class="check-list comp-list">
+                                <li>
+                                    <div>
+                                        <strong>Medical-Grade Focus</strong>
+                                        We use semiconductor chip technology pitched to the exact frequency of water and the human body.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>Instant Heat</strong>
+                                        No pre-heating. Our semiconductor chips reach therapeutic temps in seconds.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>Low-EMF Engineering</strong>
+                                        Engineered to mitigate harmful electromagnetic effects.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>Built to Last</strong>
+                                        Industrial strength silver-impregnated nylon.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <strong>Portable Freedom</strong>
+                                        Set up in the living room, store under the bed.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <table class="comp-table">
+                                <thead>
+                                    <tr>
+                                        <th>LightWave</th>
+                                        <th>Others</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>10–20 Seconds</strong><br><small>Warm-up Time</small></td>
+                                        <td>Longer / variable</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Foldable (<20lbs)</strong><br><small>Portability</small></td>
+                                        <td>Stationary box</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Reflective Silver Nylon Tent</strong><br><small>Technology</small></td>
+                                        <td>Standard panels</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>1 Year Full</strong><br><small>Warranty</small></td>
+                                        <td>Varies</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section id="how-it-works" class="section">
+                <div class="container">
+                    <h2 class="text-center">Simple. Fast. Effective.</h2>
+                    <div class="steps-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h3>Plug In & Sit Down</h3>
+                                <p>No pre-heating needed. Set up the chair & tent in 5 minutes or less, zip up, and turn it on!</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h3>Sweat 15–20 Minutes</h3>
+                                <p>Relax, read, or watch TV while you experience a deep detox sweat.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h3>Towel Off & Hydrate</h3>
+                                <p>Step out feeling lighter and energized. Drink water to replenish.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Models Section -->
+            <section id="models" class="section">
+                <div class="container">
+                    <div class="text-center">
+                        <h2>Choose Your Recovery System</h2>
+                        <p>Invest in your health for less than the cost of a few spa visits.</p>
+                    </div>
+
+                    <!-- Dynamic Models Grid -->
+                    <div class="models-grid" id="models-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials (Reviews) -->
+            <section id="reviews" class="section">
+                <div class="container">
+                    <h2 class="text-center">Real Users. Real Results.</h2>
+                    <div class="testimonials-grid">
+                        <div class="card">
+                            <div class="stars">★★★★★</div>
+                            <p>“I didn’t believe a portable unit could get this hot. I’m dripping sweat in 10 minutes. My knee pain is virtually gone.”</p>
+                            <div class="user-meta">Sarah M. – Age 42 • Post-workout recovery</div>
+                        </div>
+                        <div class="card">
+                            <div class="stars">★★★★★</div>
+                            <p>“The Silver Elite changed my mornings. I use it for 15 minutes before work and I move like I’m 20 years younger.”</p>
+                            <div class="user-meta">James D. – Age 55 • Back stiffness</div>
+                        </div>
+                        <div class="card">
+                            <div class="stars">★★★★★</div>
+                            <p>“Low EMF was a non-negotiable for me. LightWave actually tested true. Sleep scores have improved 15% since starting.”</p>
+                            <div class="user-meta">Elena R. – Age 29 • Biohacker</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <div class="container">
+                    <div class="text-center" style="margin-bottom: 2rem;">
+                        <h2>Find Your Perfect Match</h2>
+                        <p>Take our 1-minute quiz to see which model suits your lifestyle.</p>
+                    </div>
+                    
+                    <div class="quiz-container" id="quiz-app">
+                        <!-- Dynamic Quiz Content Rendered Here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="section">
+                <div class="container faq-container">
+                    <h2 class="text-center" style="margin-bottom: 2rem;">Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">Is it safe to use every day?</button>
+                        <div class="faq-answer">
+                            <p>Yes, many users enjoy daily sessions. However, we recommend starting with shorter sessions to see how your body responds. Always stay hydrated.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">How much space do I need?</button>
+                        <div class="faq-answer">
+                            <p>The sit-up models require about 3x3 feet of floor space. The Lie-Down model requires length similar to a yoga mat. All models are foldable for storage.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">What about EMF levels?</button>
+                        <div class="faq-answer">
+                            <p>Our saunas are engineered to mitigate harmful electromagnetic fields. We test our semiconductor chips to ensure they provide a safe, therapeutic experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What is the warranty?</button>
+                        <div class="faq-answer">
+                            <p>We offer a comprehensive 1-Year Warranty on all components, covering manufacturing defects and performance issues.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PRODUCT DETAIL VIEW -->
+        <div id="product-view" class="hidden container product-container">
+            <!-- Populated by JS -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>LightWave Saunas</h3>
+                    <p>Pioneering high-efficiency, low-EMF portable far infrared technology for home wellness.</p>
+                    <div class="socials">
+                        <div class="social-box"></div>
+                        <div class="social-box"></div>
+                        <div class="social-box"></div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Links</h4>
+                    <a href="#" data-modal="contact">Contact Us</a>
+                    <a href="#" data-modal="privacy">Privacy Policy</a>
+                    <a href="#" data-modal="terms">Terms of Service</a>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                Disclaimer: The statements made regarding these products have not been evaluated by the Food and Drug Administration. The efficacy of these products has not been confirmed by FDA-approved research. These products are not intended to diagnose, treat, cure or prevent any disease. All information presented here is not meant as a substitute for or alternative to information from healthcare practitioners. Please consult your healthcare professional about potential interactions or other possible complications before using any product.
+            </div>
+            
+            <div class="text-center" style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                &copy; 2025 LightWave Saunas. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Container -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close">×</button>
+            <h3 id="modal-title">Modal Title</h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        /* --- CONSTANTS & CONFIG --- */
+        const GHL_WEBHOOK_URL = "PASTE_GHL_WEBHOOK_HERE";
+
+        const STRIPE_CHECKOUT_URLS = {
+            silverElite: "https://buy.stripe.com/test_cNiaEXdSC16bfpl73LbEA04",
+            blackPro: "https://buy.stripe.com/test_4gM7sL5m67uz90XfAhbEA03",
+            flexLieDown: "https://buy.stripe.com/test_fZufZh29U6qv2Czbk1bEA02",
+            desktopTableLamp: "https://buy.stripe.com/test_9B628raGq027elh5ZHbEA05",
+            skyEyeProLamp: "https://buy.stripe.com/test_fZubJ1cOy16b1yvds9bEA00"
+        };
+
+        const TRACKING_PRODUCT_NAMES = {
+            silverElite: "Silver Elite – Home Pro",
+            blackPro: "Black Pro – Heavy Use",
+            flexLieDown: "Flex Lie-Down Sauna",
+            desktopTableLamp: "Desktop Table Lamp – Targeted FIR",
+            skyEyeProLamp: "Sky Eye Pro Lamp – Targeted FIR"
+        };
+
+        const PRODUCTS = [
+            {
+                id: 'silverElite',
+                slug: 'silver-elite',
+                name: 'Silver Elite – Home Pro',
+                shortName: 'Silver Elite',
+                price: '$1,750',
+                compareAtPrice: '$2,200',
+                tagline: 'The gold standard for home wellness.',
+                bestFor: 'Daily Home Use',
+                primaryBadge: 'Best Seller',
+                heroBullets: [
+                    'Heats in 10–20 seconds',
+                    'Purest Silver Tech insulation',
+                    'Compact, foldable design (<20lbs)'
+                ],
+                features: [
+                    'Semiconductor chip technology',
+                    'Silver-impregnated nylon tent',
+                    'Digital timer and temp control',
+                    'Includes chair and carrying case',
+                    'Ultra-low EMF design',
+                    'High-efficiency reflectivity'
+                ],
+                advantages: ['Instant warm-up', 'Deepest penetration', 'Most portable'],
+                benefits: ['Supports heavy metal detox', 'Reduces joint stiffness', 'Improves circulation'],
+                specs: {
+                    'Dimensions': '32" W x 32" D x 46" H',
+                    'Weight': '18 lbs',
+                    'Power': '1500W, 110V',
+                    'Material': 'Silver Nylon / Poly',
+                    'Warranty': '1 Year Full'
+                },
+                images: ['images/silver-elite-1.jpg'],
+                stripeModelId: 'silverElite'
+            },
+            {
+                id: 'blackPro',
+                slug: 'black-pro',
+                name: 'Black Pro – Heavy Use',
+                shortName: 'Black Pro',
+                price: '$2,350',
+                compareAtPrice: '$2,800',
+                tagline: 'Engineered for clinics and high-traffic use.',
+                bestFor: 'Clinics / Gyms',
+                primaryBadge: 'Heavy Duty',
+                heroBullets: [
+                    'Thicker insulation for heat retention',
+                    'Reinforced zippers and structure',
+                    'Ideal for continuous daily use'
+                ],
+                features: [
+                    'All features of Silver Elite',
+                    'Extra layer of insulation',
+                    'Heavy-duty exterior fabric',
+                    'Enhanced durability zippers',
+                    'Easy-clean interior'
+                ],
+                advantages: ['Maximum durability', 'Higher heat retention', 'Professional grade'],
+                benefits: ['Withstands back-to-back sessions', 'Consistent therapeutic output', 'Long-term investment'],
+                specs: {
+                    'Dimensions': '32" W x 32" D x 46" H',
+                    'Weight': '22 lbs',
+                    'Power': '1500W, 110V',
+                    'Material': 'Thickened Canvas / Silver Nylon',
+                    'Warranty': '1 Year Full'
+                },
+                images: ['images/black-pro-1.jpg'],
+                stripeModelId: 'blackPro'
+            },
+            {
+                id: 'flexLieDown',
+                slug: 'flex-lie-down',
+                name: 'Flex Lie-Down',
+                shortName: 'Flex Lie-Down',
+                price: '$1,750',
+                compareAtPrice: '$2,200',
+                tagline: 'Experience zero-gravity detox.',
+                bestFor: 'Relaxation / Mobility Issues',
+                primaryBadge: 'Zero Gravity',
+                heroBullets: [
+                    'Supine position for total relaxation',
+                    'Lower cardiovascular stress',
+                    'Full body coverage while lying down'
+                ],
+                features: [
+                    'Horizontal tent design',
+                    'Two semiconductor radiators',
+                    'Head-out option for comfort',
+                    'Compact storage mode',
+                    'Fits on massage table or floor'
+                ],
+                advantages: ['Total relaxation', 'No spinal compression', 'Versatile placement'],
+                benefits: ['Ideal for those who cannot sit long', 'Deep parasympathetic activation', 'Enhanced blood flow return'],
+                specs: {
+                    'Dimensions': '32" W x 72" L x 18" H',
+                    'Weight': '16 lbs',
+                    'Power': '1500W, 110V',
+                    'Material': 'Silver Nylon',
+                    'Warranty': '1 Year Full'
+                },
+                images: ['images/charcoal-flex-lie-down-sauna-measures.jpg'],
+                stripeModelId: 'flexLieDown'
+            },
+            {
+                id: 'desktopTableLamp',
+                slug: 'desktop-table-lamp',
+                name: 'Desktop Table Lamp',
+                shortName: 'Desktop Lamp',
+                price: '$350',
+                tagline: 'Directed far infrared for targeted comfort.',
+                bestFor: 'Spot Treatment',
+                primaryBadge: 'Targeted Relief',
+                heroBullets: [
+                    'Directed far infrared for targeted comfort and recovery',
+                    '360° rotational head + adjustable stand',
+                    'Compact, portable, easy to use'
+                ],
+                features: [
+                    'High-quality far infrared radiator',
+                    'Adjustable gooseneck stand',
+                    'Simple analog timer switch',
+                    'Portable tabletop design',
+                    'Instant heat generation'
+                ],
+                advantages: ['Target specific pain points', 'Use while working', 'Highly portable'],
+                benefits: ['Soothes localized pain', 'Improves local circulation', 'Supports recovery in specific areas'],
+                specs: {
+                    'Wavelength': '7,000–14,000 nm',
+                    'Power': '200W, 120V',
+                    'Dimensions': '5.5" x 5.5" x 15.5"',
+                    'Weight': '4 lbs',
+                    'Warranty': '1 Year'
+                },
+                images: ['images/desktop-table-lamp.jpg'],
+                stripeModelId: 'desktopTableLamp'
+            },
+            {
+                id: 'skyEyeProLamp',
+                slug: 'sky-eye-pro-lamp',
+                name: 'Sky Eye Pro Lamp',
+                shortName: 'Sky Eye Pro',
+                price: '$1,700',
+                tagline: 'Pro-grade directed far infrared therapy.',
+                bestFor: 'Clinics / Practitioners',
+                primaryBadge: 'Professional',
+                heroBullets: [
+                    'Pro-grade directed far infrared for targeted recovery',
+                    'Ideal for clinics, wellness practitioners, and high-frequency use',
+                    '360° rotational head + adjustable stand'
+                ],
+                features: [
+                    'High-power 800W radiator',
+                    'Heavy-duty rolling stand',
+                    'Fully articulated arm',
+                    'Digital control panel',
+                    'Designed for treatment tables'
+                ],
+                advantages: ['Professional power', 'Large treatment area', 'Mobile clinic solution'],
+                benefits: ['Deep tissue penetration', 'Supports rapid recovery', 'Enhances massage/treatment sessions'],
+                specs: {
+                    'Wavelength': '7,000–14,000 nm',
+                    'Power': '800W',
+                    'Dimensions': '22" x 22" x 64"',
+                    'Weight': '22 lbs',
+                    'Warranty': '1 Year'
+                },
+                images: ['images/sky-eye-pro-lamp.jpg'],
+                stripeModelId: 'skyEyeProLamp'
+            }
+        ];
+
+        /* --- Logic Layer --- */
+        
+        // Helper for safe history updates in sandboxed environments
+        function safePushState(state, title, url) {
+            try {
+                history.pushState(state, title, url);
+            } catch (e) {
+                console.warn('History API not supported in this environment:', e);
+            }
+        }
+
+        // 1. Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const iconMoon = themeToggleBtn.querySelector('.icon-moon');
+        const iconSun = themeToggleBtn.querySelector('.icon-sun');
+        const logoDark = document.querySelector('.logo-dark');
+        const logoLight = document.querySelector('.logo-light');
+
+        function updateTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            if (theme === 'dark') {
+                iconMoon.classList.remove('hidden');
+                iconSun.classList.add('hidden');
+                logoDark.classList.remove('hidden');
+                logoLight.classList.add('hidden');
+            } else {
+                iconMoon.classList.add('hidden');
+                iconSun.classList.remove('hidden');
+                logoDark.classList.add('hidden');
+                logoLight.classList.remove('hidden');
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            updateTheme(newTheme);
+        });
+
+        // 2. Stripe Checkout & Tracking
+        function trackInitiateCheckout(modelId) {
+            const name = TRACKING_PRODUCT_NAMES[modelId] || modelId;
+
+            // Meta Pixel (Facebook)
+            if (typeof fbq === "function") {
+                try {
+                fbq("track", "InitiateCheckout", {
+                    content_ids: [modelId],
+                    content_name: name,
+                    content_type: "product"
+                });
+                } catch (e) {
+                console.warn("fbq tracking error:", e);
+                }
+            }
+
+            // Google gtag (GA4 / Google Ads)
+            if (typeof gtag === "function") {
+                try {
+                gtag("event", "begin_checkout", {
+                    items: [{ item_id: modelId, item_name: name }]
+                });
+                } catch (e) {
+                console.warn("gtag tracking error:", e);
+                }
+            }
+        }
+
+        function openStripeCheckout(modelId) {
+            trackInitiateCheckout(modelId);
+            const url = STRIPE_CHECKOUT_URLS[modelId];
+            if (!url) {
+                console.warn("Missing Stripe URL for modelId:", modelId);
+                alert("Checkout link is not available for this model yet.");
+                return;
+            }
+            window.location.href = url;
+        }
+
+        // 3. Routing & Views
+        const landingView = document.getElementById('landing-view');
+        const productView = document.getElementById('product-view');
+
+        function getProductFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('product');
+        }
+
+        function renderLandingPage() {
+            landingView.classList.remove('hidden');
+            productView.classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function renderProductPage(slug) {
+            const product = PRODUCTS.find(p => p.slug === slug);
+            if (!product) {
+                renderLandingPage(); // Fallback
+                return;
+            }
+
+            // Hide landing, show product
+            landingView.classList.add('hidden');
+            productView.classList.remove('hidden');
+
+            // Build HTML
+            const bulletHTML = product.heroBullets.map(b => `<li>${b}</li>`).join('');
+            const thumbsHTML = product.images.map((img, idx) => `
+                <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="swapImage(this, '${img}', '${product.shortName}')">
+                    <div style="font-size:0.5rem; text-align:center;">${idx+1}</div>
+                </div>
+            `).join('');
+
+            const featuresHTML = product.features.map(f => `<li>${f}</li>`).join('');
+            const specsHTML = Object.entries(product.specs).map(([k, v]) => `
+                <tr><td>${k}</td><td>${v}</td></tr>
+            `).join('');
+
+            productView.innerHTML = `
+                <a class="back-link" onclick="handleInternalNav(event, 'models')">← Back to all models</a>
+                
+                <div class="product-grid">
+                    <!-- Left: Gallery -->
+                    <div class="gallery-col">
+                        <div class="gallery-main">
+                            <div class="model-image-placeholder" style="width:100%; height:100%;" id="main-img-placeholder">
+                                ${product.shortName} Image
+                            </div>
+                            <img src="${product.images[0]}" alt="${product.name}" 
+                                 style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:none;" 
+                                 onload="this.style.display='block'; document.getElementById('main-img-placeholder').style.display='none';"
+                                 onerror="this.style.display='none'; document.getElementById('main-img-placeholder').style.display='flex';"
+                                 id="main-product-image">
+                        </div>
+                        <div class="gallery-thumbs">
+                            ${thumbsHTML}
+                        </div>
+                    </div>
+
+                    <!-- Right: Details -->
+                    <div class="details-col">
+                        <span class="prod-badge">${product.primaryBadge}</span>
+                        <h1>${product.name}</h1>
+                        <div style="color:var(--color-kyma-gold); margin-bottom:1rem;">★★★★★ <span style="color:var(--text-secondary); font-size:0.9rem;">(Read Reviews)</span></div>
+                        
+                        <div style="margin-bottom:1.5rem;">
+                            <span class="prod-price">${product.price}</span>
+                            ${product.compareAtPrice ? `<span class="prod-compare">${product.compareAtPrice}</span>` : ''}
+                        </div>
+                        
+                        <p style="font-size:1.2rem; margin-bottom:1.5rem;">${product.tagline}</p>
+                        
+                        <ul class="prod-bullets" style="margin-bottom:2rem;">
+                            ${bulletHTML}
+                        </ul>
+
+                        <button class="btn btn-primary btn-full" style="margin-bottom:1rem;" onclick="openStripeCheckout('${product.stripeModelId}')">Checkout with Stripe</button>
+                        <div class="secure-text">🔒 Secure 256-bit Encryption • 30-Day Money Back Guarantee</div>
+                    </div>
+                </div>
+
+                <div style="margin-top:4rem;">
+                    <h2 style="margin-bottom:2rem;">Product Features</h2>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;">
+                        <div class="card">
+                            <h3>Key Features</h3>
+                            <ul class="check-list">
+                                ${featuresHTML}
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Specifications</h3>
+                            <table class="specs-table">
+                                ${specsHTML}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top:4rem;">
+                    <h2 style="margin-bottom:1rem;">Benefits</h2>
+                    <p>${product.bestFor} | ${product.advantages.join(' • ')}</p>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1rem; margin-top:1rem;">
+                        ${product.benefits.map(b => `<div class="card" style="padding:1rem;">✓ ${b}</div>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            window.scrollTo(0, 0);
+        }
+
+        function swapImage(el, src, alt) {
+            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            
+            const mainImg = document.getElementById('main-product-image');
+            const placeholder = document.getElementById('main-img-placeholder');
+            
+            mainImg.src = src;
+            // logic handled by onload/onerror on the img tag itself, but we reset for new load
+            mainImg.style.display = 'none';
+            placeholder.style.display = 'flex';
+        }
+
+        // 4. Render Models on Landing Page
+        function renderModels() {
+            const container = document.getElementById('models-container');
+            container.innerHTML = PRODUCTS.map(p => `
+                <div class="card model-card" style="${p.slug === 'black-pro' ? 'border-color: var(--accent-primary);' : ''}">
+                    <h3>${p.name}</h3>
+                    <div class="model-image-placeholder">
+                        <img src="${p.images[0]}" alt="${p.name}">
+                    </div>
+                    <div class="price">${p.price}</div>
+                    <ul class="model-features">
+                        ${p.heroBullets.map(b => `<li>${b}</li>`).join('')}
+                    </ul>
+                    <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:auto;">
+                        <button class="btn btn-primary btn-full" onclick="openStripeCheckout('${p.stripeModelId}')">Checkout with Stripe</button>
+                        <a href="?product=${p.slug}" class="btn btn-secondary btn-full" onclick="handleProductNav(event, '${p.slug}')">View Details</a>
+                    </div>
+                    <span class="secure-text" style="margin-top:0.5rem;">🔒 Secure 256-bit Encryption</span>
+                </div>
+            `).join('');
+        }
+
+        // 5. Navigation Handlers
+        // For "View Details" click without reload
+        function handleProductNav(e, slug) {
+            e.preventDefault();
+            safePushState({view: 'product', slug: slug}, '', `?product=${slug}`);
+            renderProductPage(slug);
+        }
+
+        // For "Back to models" click without reload
+        function handleInternalNav(e, anchorId) {
+            e.preventDefault();
+            // Use pathname fallback or empty string for sandbox safety
+            safePushState({view: 'landing'}, '', window.location.pathname); 
+            renderLandingPage();
+            setTimeout(() => {
+                const el = document.getElementById(anchorId);
+                if(el) el.scrollIntoView({behavior: 'smooth'});
+            }, 10);
+        }
+
+        // Initialize App
+        function init() {
+            renderModels();
+            renderQuiz();
+            const slug = getProductFromURL();
+            if (slug) {
+                renderProductPage(slug);
+            } else {
+                renderLandingPage();
+            }
+        }
+
+        // Handle Browser Back Button
+        window.addEventListener('popstate', (e) => {
+            const slug = getProductFromURL();
+            if (slug) renderProductPage(slug);
+            else renderLandingPage();
+        });
+
+        // 6. FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const isActive = btn.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.faq-question').forEach(otherBtn => {
+                    otherBtn.classList.remove('active');
+                    otherBtn.nextElementSibling.style.maxHeight = null;
+                });
+
+                if (!isActive) {
+                    btn.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // 7. Quiz Logic (Updated)
+        const quizContainer = document.getElementById('quiz-app');
+        
+        const questions = [
+            {
+                id: 'main_goal',
+                question: 'What is your main goal?',
+                options: ['Pain relief', 'Detox / Weight support', 'Stress / Sleep', 'Athletic recovery']
+            },
+            {
+                id: 'preferred_position',
+                question: 'Preferred position?',
+                options: ['Sitting', 'Lying down', 'Either']
+            },
+            {
+                id: 'living_situation',
+                question: 'Living situation?',
+                options: ['Apartment / Small space', 'Typical house', 'Dedicated wellness room', 'Clinic / Gym / Spa']
+            },
+            {
+                id: 'time_commitment',
+                question: 'Time commitment?',
+                options: ['10 minutes a few days/week', '15–20 minutes 3–5 days/week', '30+ minutes most days', 'Not sure']
+            },
+            {
+                id: 'budget',
+                question: 'Budget readiness?',
+                options: ['Ready to invest $1,700–$2,350', 'Still exploring']
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let answers = {};
+        let recommendedSlug = 'silver-elite'; // Default
+
+        function renderQuiz() {
+            quizContainer.innerHTML = '';
+
+            // Render Progress
+            const progress = ((currentQuestionIndex) / questions.length) * 100;
+            const progressHTML = `
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" style="width: ${progress}%"></div>
+                </div>
+            `;
+
+            // If finished, show results
+            if (currentQuestionIndex >= questions.length) {
+                renderResult();
+                return;
+            }
+
+            const q = questions[currentQuestionIndex];
+            
+            // Back button (if not first Q)
+            const backBtn = currentQuestionIndex > 0 
+                ? `<button class="quiz-back-btn" onclick="prevQuestion()">← Back</button>` 
+                : '';
+
+            let optionsHTML = '';
+            q.options.forEach(opt => {
+                optionsHTML += `<button class="quiz-option" onclick="handleAnswer('${q.id}', '${opt}')">${opt}</button>`;
+            });
+
+            quizContainer.innerHTML = `
+                ${progressHTML}
+                ${backBtn}
+                <div class="quiz-question fade-in">
+                    <h3>${q.question}</h3>
+                    <div class="quiz-options">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleAnswer(questionId, answer) {
+            answers[questionId] = answer;
+            currentQuestionIndex++;
+            renderQuiz();
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuiz();
+            }
+        }
+
+        function renderResult() {
+            // Recommendation Logic
+            // If lying down -> Flex
+            // Else if Clinic OR 30+ mins -> Black Pro
+            // Else -> Silver Elite
+            
+            let recommendedModel = 'Silver Elite';
+            let modelId = 'silverElite';
+            recommendedSlug = 'silver-elite';
+
+            let reasonText = `Based on your goal for <strong>${answers.main_goal.toLowerCase()}</strong> and your setup in a <strong>${answers.living_situation.toLowerCase()}</strong>, we recommend the Silver Elite for maximum efficiency and ease of use.`;
+
+            if (answers.preferred_position === 'Lying down') {
+                recommendedModel = 'Flex Lie-Down';
+                modelId = 'flexLieDown';
+                recommendedSlug = 'flex-lie-down';
+                reasonText = `Since you prefer <strong>lying down</strong> for your sessions, the Flex Lie-Down is your perfect match for total relaxation and zero-gravity comfort.`;
+            } else if (
+                answers.living_situation === 'Clinic / Gym / Spa' || 
+                answers.time_commitment === '30+ minutes most days'
+            ) {
+                recommendedModel = 'Black Pro';
+                modelId = 'blackPro';
+                recommendedSlug = 'black-pro';
+                reasonText = `Because you need professional durability for <strong>frequent use</strong> or clinical settings, the Black Pro is built to handle your demands.`;
+            }
+
+            quizContainer.innerHTML = `
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" style="width: 100%"></div>
+                </div>
+                <div class="result-panel fade-in">
+                    <h2>Analysis Complete</h2>
+                    <p>Your Perfect Match: <strong>Deep Detox & Daily Wellness</strong></p>
+                    
+                    <div class="result-card">
+                        <h3>Recommended: ${recommendedModel}</h3>
+                        <p>${reasonText}</p>
+                        <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                            <a href="?product=${recommendedSlug}" class="btn btn-primary" onclick="handleProductNav(event, '${recommendedSlug}')">View Recommended Sauna</a>
+                            <button class="btn btn-secondary" onclick="openStripeCheckout('${modelId}')">Checkout Recommended Sauna</button>
+                        </div>
+                    </div>
+
+                    <div class="email-capture">
+                        <label for="email-input">Save your results & get a free detox guide:</label>
+                        <form onsubmit="handleEmailSubmit(event)" class="email-input-group">
+                            <input type="email" id="email-input" placeholder="Enter your email" required>
+                            <button type="submit" class="btn btn-secondary">Send</button>
+                        </form>
+                        <p id="email-msg" style="color: var(--accent-primary); font-size: 0.9rem; margin-top: 0.5rem; display: none;">Saved! Check your inbox soon.</p>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <a href="#models" style="text-decoration: underline; color: var(--text-secondary);" onclick="handleInternalNav(event, 'models')">Or compare all models above</a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Expose function to window for the onclick handler
+        window.handleAnswer = handleAnswer;
+        window.prevQuestion = prevQuestion;
+        
+        function handleEmailSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            console.log(`[Email Captured]: ${email}`);
+            
+            // Webhook
+            if (GHL_WEBHOOK_URL && GHL_WEBHOOK_URL.startsWith('http')) {
+                fetch(GHL_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, source: 'quiz', recommended: recommendedSlug })
+                }).catch(err => console.log('Webhook error', err));
+            } else {
+                console.log('Webhook not configured, logging only.');
+            }
+
+            // Show success
+            const msg = document.getElementById('email-msg');
+            msg.style.display = 'block';
+            e.target.reset();
+        }
+        window.handleEmailSubmit = handleEmailSubmit;
+
+        // 8. Smooth Scroll & Navigation Fix (Intercepts clicks)
+        document.addEventListener('click', function(e) {
+            // A. Handle Anchor Links (ONLY if we are on landing view)
+            // If on product view, let logic handle "back" links or force refresh if needed, but here we cover general nav
+            const anchor = e.target.closest('a[href^="#"]');
+            if (anchor) {
+                e.preventDefault();
+                const targetId = anchor.getAttribute('href').substring(1);
+                
+                // If on product page, go back to landing first
+                if (getProductFromURL()) {
+                     safePushState({view: 'landing'}, '', window.location.pathname);
+                     renderLandingPage();
+                     // small delay to allow DOM to swap
+                     setTimeout(() => {
+                        const targetSection = document.getElementById(targetId);
+                        if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                     }, 50);
+                     return;
+                }
+
+                if (!targetId) return;
+
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    safePushState(null, null, '#' + targetId);
+                }
+                return;
+            }
+
+            // B. Handle Modals
+            const modalTrigger = e.target.closest('[data-modal]');
+            if (modalTrigger) {
+                e.preventDefault();
+                const modalType = modalTrigger.getAttribute('data-modal');
+                openModal(modalType);
+            }
+        });
+
+        // 9. Modal Logic
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalCloseBtn = document.getElementById('modal-close');
+
+        const modalContentData = {
+            'contact': {
+                title: 'Contact Us',
+                body: '<p>Have questions? Reach out to our support team.</p><p>Email: <strong>support@lightwavesaunas.com</strong></p><p>Phone: 1-800-555-0199</p><p>Hours: Mon-Fri, 9am - 5pm EST</p>'
+            },
+            'privacy': {
+                title: 'Privacy Policy',
+                body: '<p>At LightWave Saunas, we value your privacy. This policy outlines how we collect, use, and protect your personal information.</p><h4>Data Collection</h4><p>We collect information you provide directly to us, such as when you create an account, make a purchase, or sign up for our newsletter.</p><h4>Data Usage</h4><p>We use your information to process transactions, provide customer support, and improve our services.</p>'
+            },
+            'terms': {
+                title: 'Terms of Service',
+                body: '<p>By accessing or using LightWave Saunas services, you agree to be bound by these Terms.</p><h4>Usage</h4><p>Our products are for personal wellness use only. Consult a doctor before use.</p><h4>Returns</h4><p>We offer a 30-day money-back guarantee on all saunas.</p>'
+            }
+        };
+
+        function openModal(type) {
+            const data = modalContentData[type];
+            if (data) {
+                modalTitle.textContent = data.title;
+                modalBody.innerHTML = data.body;
+                modalOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
+        });
+
+        // Run Init
+        init();
+
+    </script>
+</body>
+</html>--- END OF FILE index.html ---
